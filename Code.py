@@ -22,16 +22,14 @@ def return_sheet(id_key):
     #cleaned_values = [[item for item in unique_list if item]for unique_list in entire_sheet] #removes empty strings #Probably dont need
     return entire_sheet, wks
 
-def power_dict_make(work_sheet):
+#  Needs to be split into two functions
+def power_dict_make(work_sheet, FN_index):
     """Returns a dic containing everyone's ind pwr usage & the FN cost"""
     cost_dict = {"BB": 0, "Rachel": 0, "Rosie": 0, "Shaz": 0, "Nic": 0, "Oli": 0}
     FN_counter = 0
-    for rows in work_sheet:
-        if rows[1] != "" and rows[0] != "Weeks":
-            FN_counter += 1
 
-    FN_power_people = work_sheet[FN_counter]
-    work_sheet[FN_counter].pop(0) #removes the an unwanted date element
+    FN_power_people = work_sheet[FN_index]
+    work_sheet[FN_index].pop(0) #removes the an unwanted date element
     
     total_pp_cost = 0 #Total power cost from everyone's heaters
     for person in cost_dict.keys(): #Incrementing through the cost dict
